@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchJobs } from '../redux';
+import Loader from './Loader';
 
 function JobContainer({ jobData, fetchJobs }) {
   useEffect(() => {
@@ -8,16 +9,23 @@ function JobContainer({ jobData, fetchJobs }) {
     // empty array do it is dispatched only once
   }, []);
   return jobData.loading ? (
-    <h2>Loading</h2>
+    <Loader></Loader>
   ) : jobData.error ? (
     <h2>{jobData.error}</h2>
   ) : (
     <div>
-      <h2>Jobs List</h2>
-      <div>
+      <h2>Beer List</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
         {jobData &&
           jobData.jobs &&
-          jobData.jobs.results.map((job) => <p>{job.name}</p>)}
+          jobData.jobs.map((job) => (
+            <div className="p-3">
+              {' '}
+              <h3>{job.name}</h3>
+              <p>{job.tagline}</p>
+              <img src={job.image_url} className="h-64"></img>
+            </div>
+          ))}
       </div>
     </div>
   );

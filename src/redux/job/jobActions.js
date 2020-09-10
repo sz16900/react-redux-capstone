@@ -13,10 +13,11 @@ export const fetchJobs = () => {
   return (dispatch) => {
     dispatch(fetchJobsRequest());
     axios
-      .get('https://pokeapi.co/api/v2/pokemon')
+      .get('https://api.punkapi.com/v2/beers?per_page=80')
       .then((response) => {
         // response.data is the JOBS
         const jobs = response.data;
+        console.log(response.data.length);
         dispatch(fetchJobsSuccess(jobs));
       })
       .catch((error) => {
