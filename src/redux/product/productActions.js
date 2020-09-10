@@ -49,7 +49,12 @@ export const fetchProduct = (id) => {
 
 export const fetchPairings = (query) => {
   // receive dispatch as an argument
-  const findPair = `${api}?food=${query}`;
+  let findPair = '';
+  if (query === '') {
+    findPair = `${api}?${limits}`;
+  } else {
+    findPair = `${api}?food=${query}`;
+  }
   return (dispatch) => {
     dispatch(fetchProductsRequest());
     axios

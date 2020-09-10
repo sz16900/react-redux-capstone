@@ -14,6 +14,7 @@ function Home({ fetchPairings }) {
         onKeyPress={(e) => {
           if (e.key === 'Enter') {
             e.preventDefault();
+            fetchPairings(e.target.value);
           } else {
             fetchPairings(e.target.value);
           }
