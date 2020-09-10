@@ -24,8 +24,9 @@ function JobContainer({ jobData, fetchJobs }) {
               {' '}
               <h3>{job.name}</h3>
               <p>{job.tagline}</p>
-              <Link></Link>
-              <img src={job.image_url} className="h-64"></img>
+              <Link to={`/products/${job.id}`}>
+                <img src={job.image_url} className="h-64"></img>
+              </Link>
             </div>
           ))}
       </div>
