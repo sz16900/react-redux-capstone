@@ -1,32 +1,32 @@
 import {
-  FETCH_JOBS_REQUEST,
-  FETCH_JOBS_SUCCESS,
-  FETCH_JOBS_FAILURE,
-} from './jobTypes';
+  FETCH_PRODUCTS_REQUEST,
+  FETCH_PRODUCTS_SUCCESS,
+  FETCH_PRODUCTS_FAILURE,
+} from './productTypes';
 
 const initialState = {
   loading: false,
-  jobs: [],
+  products: [],
   error: '',
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_JOBS_REQUEST:
+    case FETCH_PRODUCTS_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case FETCH_JOBS_SUCCESS:
+    case FETCH_PRODUCTS_SUCCESS:
       return {
         loading: false,
-        jobs: action.payload,
+        products: action.payload,
         error: '',
       };
-    case FETCH_JOBS_FAILURE:
+    case FETCH_PRODUCTS_FAILURE:
       return {
         loading: false,
-        jobs: [],
+        products: [],
         error: action.payload,
       };
     default:

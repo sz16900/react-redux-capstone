@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 
 function Product(props) {
   const { id } = useParams();
 
-  return <div>{props.jobData}</div>;
+  return <div>{props.productData}</div>;
 }
 
 export default Product;

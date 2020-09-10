@@ -1,31 +1,32 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchJobs } from '../redux';
+import { fetchProducts } from '../redux';
 import Loader from '../components/Loader';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-function JobContainer({ jobData, fetchJobs }) {
+function Home({ productData, fetchProducts }) {
   useEffect(() => {
-    fetchJobs();
+    fetchProducts();
     // empty array do it is dispatched only once
   }, []);
-  return jobData.loading ? (
+  return productData.loading ? (
     <Loader></Loader>
-  ) : jobData.error ? (
-    <h2>{jobData.error}</h2>
+  ) : productData.error ? (
+    <h2>{productData.error}</h2>
   ) : (
     <div>
       <h2>Beer List</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-        {jobData &&
-          jobData.jobs &&
-          jobData.jobs.map((job) => (
+        {productData &&
+          productData.products &&
+          productData.products.map((product) => (
             <div className="p-3">
               {' '}
-              <h3>{job.name}</h3>
-              <p>{job.tagline}</p>
-              <Link to={`/products/${job.id}`}>
-                <img src={job.image_url} className="h-64"></img>
+              <h3>{product.name}</h3>
+              <p>{product.tagline}</p>
+              <Link to={`/products/${product.id}`}>
+                <img src={product.image_url} className="h-64"></img>
               </Link>
             </div>
           ))}
@@ -36,14 +37,24 @@ function JobContainer({ jobData, fetchJobs }) {
 
 const mapStateToProps = (state) => {
   return {
-    jobData: state.job,
+    productData: state.product,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchJobs: () => dispatch(fetchJobs()),
+    fetchProducts: () => dispatch(fetchProducts()),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(JobContainer);
+Home.propTypes = {
+  fetchData: PropTypes.func,
+  productData: PropTypes.object,
+};
+
+Home.defaultProps = {
+  fetchData: () => {},
+  productData: {},
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
