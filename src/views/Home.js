@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchJobs } from '../redux';
-import Loader from './Loader';
+import Loader from '../components/Loader';
+import { Link } from 'react-router-dom';
 
 function JobContainer({ jobData, fetchJobs }) {
   useEffect(() => {
@@ -23,6 +24,7 @@ function JobContainer({ jobData, fetchJobs }) {
               {' '}
               <h3>{job.name}</h3>
               <p>{job.tagline}</p>
+              <Link></Link>
               <img src={job.image_url} className="h-64"></img>
             </div>
           ))}
