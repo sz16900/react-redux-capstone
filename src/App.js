@@ -4,11 +4,13 @@ import store from './redux/store';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './views/Home';
 import Product from './views/Product';
+import Filter from './components/Filter';
 
 function App() {
   return (
     <Provider store={store}>
       <div className="App">
+        <Filter />
         <Router>
           <Switch>
             <Route exact path="/">

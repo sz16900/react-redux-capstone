@@ -30,12 +30,30 @@ export const fetchProducts = () => {
 };
 
 export const fetchProduct = (id) => {
-  console.log(`here too ${id}`);
   // receive dispatch as an argument
   return (dispatch) => {
     dispatch(fetchProductsRequest());
     axios
       .get(`${api}/${id}`)
+      .then((response) => {
+        // response.data is the JOBS
+        const products = response.data;
+        dispatch(fetchProductsSuccess(products));
+      })
+      .catch((error) => {
+        // error.message is the error message
+        dispatch(fetchProductsFailure(error.message));
+      });
+  };
+};
+
+export const fetchPairings = (query) => {
+  // receive dispatch as an argument
+  const findPair = `${api}?food=${query}`;
+  return (dispatch) => {
+    dispatch(fetchProductsRequest());
+    axios
+      .get(findPair)
       .then((response) => {
         // response.data is the JOBS
         const products = response.data;

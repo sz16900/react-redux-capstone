@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 
 function Product({ productData, fetchProduct }) {
   const { id } = useParams();
-  console.log(`whatthefuck ${id}`);
   useEffect(() => {
     fetchProduct(id);
     // empty array do it is dispatched only once

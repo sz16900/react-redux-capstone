@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchProducts } from '../redux';
+import { fetchProducts, fetchPairings } from '../redux';
 import Loader from '../components/Loader';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function Home({ productData, fetchProducts }) {
+function Home({ productData, fetchProducts, fetchPairings }) {
   useEffect(() => {
     fetchProducts();
     // empty array do it is dispatched only once
@@ -16,7 +16,6 @@ function Home({ productData, fetchProducts }) {
     <h2>{productData.error}</h2>
   ) : (
     <div>
-      <h2>Beer List</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
         {productData &&
           productData.products &&
@@ -44,6 +43,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchProducts: () => dispatch(fetchProducts()),
+    fetchPairings: (params) => dispatch(fetchPairings(params)),
   };
 };
 
@@ -54,6 +54,7 @@ Home.propTypes = {
 
 Home.defaultProps = {
   fetchData: () => {},
+  fetchPairings: () => {},
   productData: {},
 };
 
