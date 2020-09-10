@@ -1,10 +1,62 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { fetchProduct } from '../redux';
+import Loader from '../components/Loader';
+import { Link, useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-function Product(props) {
+function Product({ productData, fetchProduct }) {
   const { id } = useParams();
-
-  return <div>{props.productData}</div>;
+  console.log(`whatthefuck ${id}`);
+  useEffect(() => {
+    fetchProduct(id);
+    // empty array do it is dispatched only once
+  }, []);
+  return productData.loading ? (
+    <Loader></Loader>
+  ) : productData.error ? (
+    <h2>{productData.error}</h2>
+  ) : (
+    <div>
+      <h2>Beer List</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+        {productData &&
+          productData.products &&
+          productData.products.map((product) => (
+            <div className="p-3">
+              {' '}
+              <h3>{product.name}</h3>
+              <p>{product.tagline}</p>
+              <Link to={`/products/${product.id}`}>
+                <img src={product.image_url} className="h-64"></img>
+              </Link>
+            </div>
+          ))}
+      </div>
+    </div>
+  );
 }
 
-export default Product;
+const mapStateToProps = (state) => {
+  return {
+    productData: state.product,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchProduct: (params) => dispatch(fetchProduct(params)),
+  };
+};
+
+Product.propTypes = {
+  fetchData: PropTypes.func,
+  productData: PropTypes.object,
+};
+
+Product.defaultProps = {
+  fetchData: () => {},
+  productData: {},
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);
