@@ -21,39 +21,39 @@ function Product({ productData, fetchProduct }) {
         productData.products &&
         productData.products.map((product) => (
           <div className="sm:p-1 md:w-1/2 md:self-center flex flex-col">
-            <img src={product.image_url} className="w-24 self-center"></img>
-            <h2>
-              <span>Name: </span>
+            <img src={product.image_url} className="w-32 self-center"></img>
+            <h2 className="p-3 border-black border-b-2 text-2xl">
+              <span className="text-3xl">Name: </span>
               {product.name}
             </h2>
-            <h2>
-              <span>Tagline: </span>
+            <h2 className="p-3 border-black border-b-2 text-2xl">
+              <span className="text-3xl">Tagline: </span>
               {product.tagline}
             </h2>
-            <h2>
-              <span>First Brewed: </span>
+            <h2 className="p-3 border-black border-b-2 text-2xl">
+              <span className="text-3xl">First Brewed: </span>
               {product.first_brewed}
             </h2>
-            <h2>
-              <span>Description: </span>
+            <h2 className="p-3 border-black border-b-2 text-2xl">
+              <span className="text-3xl">Description: </span>
               {product.description}
             </h2>
-            <h2>
-              <span>ABV: </span>
+            <h2 className="p-3 border-black border-b-2 text-2xl">
+              <span className="text-3xl">ABV: </span>
               {product.abv}
             </h2>
-            <h2>
-              <span>IBU: </span>
+            <h2 className="p-3 border-black border-b-2 text-2xl">
+              <span className="text-3xl">IBU: </span>
               {product.ibu}
             </h2>
-            <h2>
-              <span>PH: </span>
+            <h2 className="p-3 border-black border-b-2 text-2xl">
+              <span className="text-3xl">PH: </span>
               {product.ph}
             </h2>
-            <h2>
-              <span>Food Pairings: </span>
+            <h2 className="p-3 text-2xl">
+              <span className="text-3xl">Food Pairings: </span>
               {product.food_pairing.map((food) => {
-                return <p>{food}</p>;
+                return <p> {food}</p>;
               })}
             </h2>
           </div>

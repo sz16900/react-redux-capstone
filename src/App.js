@@ -10,10 +10,10 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <Filter />
         <Router>
           <Switch>
             <Route exact path="/">
+              <Filter />
               <Home />
             </Route>
             <Route path="/products/:id">
