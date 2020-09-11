@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchProduct } from '../redux';
 import Loader from '../components/Loader';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 function Product({ productData, fetchProduct }) {
@@ -16,22 +16,48 @@ function Product({ productData, fetchProduct }) {
   ) : productData.error ? (
     <h2>{productData.error}</h2>
   ) : (
-    <div>
-      <h2>Beer List</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-        {productData &&
-          productData.products &&
-          productData.products.map((product) => (
-            <div className="p-3">
-              {' '}
-              <h3>{product.name}</h3>
-              <p>{product.tagline}</p>
-              <Link to={`/products/${product.id}`}>
-                <img src={product.image_url} className="h-64"></img>
-              </Link>
-            </div>
-          ))}
-      </div>
+    <div className="flex flex-col ">
+      {productData &&
+        productData.products &&
+        productData.products.map((product) => (
+          <div className="sm:p-1 md:w-1/2 md:self-center flex flex-col">
+            <img src={product.image_url} className="w-32 self-center"></img>
+            <h2 className="p-3 border-black border-b-2 text-2xl">
+              <span className="text-3xl">Name: </span>
+              {product.name}
+            </h2>
+            <h2 className="p-3 border-black border-b-2 text-2xl">
+              <span className="text-3xl">Tagline: </span>
+              {product.tagline}
+            </h2>
+            <h2 className="p-3 border-black border-b-2 text-2xl">
+              <span className="text-3xl">First Brewed: </span>
+              {product.first_brewed}
+            </h2>
+            <h2 className="p-3 border-black border-b-2 text-2xl">
+              <span className="text-3xl">Description: </span>
+              {product.description}
+            </h2>
+            <h2 className="p-3 border-black border-b-2 text-2xl">
+              <span className="text-3xl">ABV: </span>
+              {product.abv}
+            </h2>
+            <h2 className="p-3 border-black border-b-2 text-2xl">
+              <span className="text-3xl">IBU: </span>
+              {product.ibu}
+            </h2>
+            <h2 className="p-3 border-black border-b-2 text-2xl">
+              <span className="text-3xl">PH: </span>
+              {product.ph}
+            </h2>
+            <h2 className="p-3 text-2xl">
+              <span className="text-3xl">Food Pairings: </span>
+              {product.food_pairing.map((food) => {
+                return <p> {food}</p>;
+              })}
+            </h2>
+          </div>
+        ))}
     </div>
   );
 }

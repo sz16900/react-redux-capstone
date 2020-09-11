@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchProducts, fetchPairings } from '../redux';
+import { fetchProducts } from '../redux';
 import Loader from '../components/Loader';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function Home({ productData, fetchProducts, fetchPairings }) {
+function Home({ productData, fetchProducts }) {
   useEffect(() => {
     fetchProducts();
     // empty array do it is dispatched only once
@@ -16,15 +16,15 @@ function Home({ productData, fetchProducts, fetchPairings }) {
     <h2>{productData.error}</h2>
   ) : (
     <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+      <div className="bg-gray-100 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 justify-items-center">
         {productData &&
           productData.products &&
           productData.products.map((product) => (
-            <div className="p-3">
-              {' '}
-              <h3>{product.name}</h3>
-              <p>{product.tagline}</p>
-              <Link to={`/products/${product.id}`}>
+            <div className="sm:p-1 md:w-1/2 self-center flex flex-col mb-3">
+              <h3 className="self-center p-3 text-xl font-extrabold">
+                {product.name}
+              </h3>
+              <Link className="self-center" to={`/products/${product.id}`}>
                 <img src={product.image_url} className="h-64"></img>
               </Link>
             </div>
@@ -43,7 +43,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchProducts: () => dispatch(fetchProducts()),
-    fetchPairings: (params) => dispatch(fetchPairings(params)),
   };
 };
 

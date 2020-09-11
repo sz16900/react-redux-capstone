@@ -2,27 +2,31 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Header from './components/Header';
 import Home from './views/Home';
 import Product from './views/Product';
 import Filter from './components/Filter';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <Provider store={store}>
-      <div className="App">
-        <Filter />
+    <div className="relative pb-10 min-h-screen">
+      <Provider store={store}>
         <Router>
+          <Header />
           <Switch>
             <Route exact path="/">
+              <Filter />
               <Home />
             </Route>
             <Route path="/products/:id">
               <Product />
             </Route>
           </Switch>
+          <Footer />
         </Router>
-      </div>
-    </Provider>
+      </Provider>
+    </div>
   );
 }
 
