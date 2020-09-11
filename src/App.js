@@ -6,13 +6,14 @@ import Header from './components/Header';
 import Home from './views/Home';
 import Product from './views/Product';
 import Filter from './components/Filter';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <Provider store={store}>
-      <div className="App">
-        <Header />
+    <div className="relative pb-10 min-h-screen">
+      <Provider store={store}>
         <Router>
+          <Header />
           <Switch>
             <Route exact path="/">
               <Filter />
@@ -22,9 +23,10 @@ function App() {
               <Product />
             </Route>
           </Switch>
+          <Footer />
         </Router>
-      </div>
-    </Provider>
+      </Provider>
+    </div>
   );
 }
 
