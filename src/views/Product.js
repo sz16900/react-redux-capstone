@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchProduct } from '../redux';
 import Loader from '../components/Loader';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 function Product({ productData, fetchProduct }) {

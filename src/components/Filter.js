@@ -5,22 +5,25 @@ import PropTypes from 'prop-types';
 
 function Home({ fetchPairings }) {
   return (
-    <form>
-      <input
-        className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="username"
-        type="text"
-        placeholder="Food Pairings"
-        onKeyPress={(e) => {
-          if (e.key === 'Enter') {
-            e.preventDefault();
-            fetchPairings(e.target.value);
-          } else {
-            fetchPairings(e.target.value);
-          }
-        }}
-      ></input>
-    </form>
+    <div className="flex flex-col ">
+      <span className="text-4xl self-center">Beer + ?</span>
+      <form className="self-center">
+        <input
+          class="appearance-none border-b rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="username"
+          type="text"
+          placeholder="Pizza"
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              fetchPairings(e.target.value);
+            } else {
+              fetchPairings(e.target.value);
+            }
+          }}
+        ></input>
+      </form>
+    </div>
   );
 }
 
