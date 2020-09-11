@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 
 function Home({ fetchPairings }) {
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col border-black border-b-2 p-4">
       <span className="text-4xl self-center">Beer + ?</span>
       <form className="self-center">
         <input
-          class="appearance-none border-b rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          class="appearance-none border-b rounded w-full text-center text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="username"
           type="text"
           placeholder="Pizza"
