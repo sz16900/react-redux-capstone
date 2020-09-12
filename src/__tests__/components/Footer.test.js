@@ -1,6 +1,6 @@
 import React from 'react';
-import Footer from '../../components/Footer';
 import { shallow } from 'enzyme';
+import Footer from '../../components/Footer';
 
 describe('The Footer', () => {
   test('renders Seth Zea', () => {
