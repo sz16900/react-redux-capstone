@@ -26,7 +26,7 @@ In this project, I am going to make a React-Redux simple e-commerce front-end ap
 - Flexbox
 - CSS Grid
 - Tailwind CSS
-- Spring 
+- Spring
 - Jest
 
 ---
