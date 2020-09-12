@@ -13,7 +13,9 @@ In this project, I am going to make a React-Redux simple e-commerce front-end ap
 
 [Live Link](https://catalogue-react-redux.herokuapp.com/)
 
----
+## Video Link
+
+[Video Link](https://www.loom.com/share/51272b1066dd4222a621466cb674f369)
 
 ## Built With
 
