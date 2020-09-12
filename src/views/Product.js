@@ -2,10 +2,9 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { uid } from 'react-uid';
 import { fetchProduct } from '../redux';
 import Loader from '../components/Loader';
-
-const iter = 0;
 
 function Product({ productData, fetchProduct }) {
   const { id } = useParams();
@@ -65,7 +64,7 @@ function Product({ productData, fetchProduct }) {
               <span className="text-3xl">Food Pairings: </span>
 
               {product.food_pairing.map(food => (
-                <p key={iter}>
+                <p key={uid(food)}>
                   {' '}
                   {food}
                 </p>
