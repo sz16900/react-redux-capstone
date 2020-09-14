@@ -13,14 +13,15 @@ function Filter({ fetchPairings }) {
             className="appearance-none border-b rounded w-full text-center text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="username"
             type="text"
-            placeholder="Pizza"
-            onKeyPress={e => {
+            placeholder="Your Favorite Food"
+            onKeyPress={(e) => {
               if (e.key === 'Enter') {
                 e.preventDefault();
                 fetchPairings(e.target.value);
-              } else {
-                fetchPairings(e.target.value);
               }
+            }}
+            onChange={(e) => {
+              fetchPairings(e.target.value);
             }}
           />
         </form>
@@ -29,12 +30,12 @@ function Filter({ fetchPairings }) {
   );
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   productData: state.product,
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchPairings: params => dispatch(fetchPairings(params)),
+const mapDispatchToProps = (dispatch) => ({
+  fetchPairings: (params) => dispatch(fetchPairings(params)),
 });
 
 Filter.propTypes = {
