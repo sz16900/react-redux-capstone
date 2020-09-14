@@ -8,12 +8,10 @@ const mockStore = configureStore(middlewares);
 const success = actions.fetchProductsSuccess;
 
 function fetchData() {
-  return (dispatch) => {
-    return fetch(
-      'https://api.punkapi.com/v2/beers?brewed_before=11-2012&abv_gt=6'
-    ) // Some async action with promise
-      .then(() => dispatch(success()));
-  };
+  return dispatch => fetch(
+    'https://api.punkapi.com/v2/beers?brewed_before=11-2012&abv_gt=6',
+  ) // Some async action with promise
+    .then(() => dispatch(success()));
 }
 
 it('should execute fetch data', () => {

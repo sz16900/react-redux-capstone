@@ -10,7 +10,7 @@ describe('The Main Reducer', () => {
   test('checks for error status', () => {
     const reducer = productReducer(
       initialState,
-      actions.fetchProductsFailure('error')
+      actions.fetchProductsFailure('error'),
     );
     expect(reducer).toEqual({ loading: false, products: [], error: 'error' });
   });
@@ -18,14 +18,14 @@ describe('The Main Reducer', () => {
   test('checks for success status', () => {
     const reducer = productReducer(
       initialState,
-      actions.fetchProductsSuccess({})
+      actions.fetchProductsSuccess({}),
     );
     expect(reducer).toEqual({ loading: false, products: {}, error: '' });
   });
   test('checks for success status', () => {
     const reducer = productReducer(
       initialState,
-      actions.fetchProductsRequest({})
+      actions.fetchProductsRequest({}),
     );
     expect(reducer).toEqual({ loading: true, products: [], error: '' });
   });

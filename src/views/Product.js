@@ -20,9 +20,9 @@ function Product({ productData, fetchProduct }) {
   }
   return (
     <div className="flex flex-col ">
-      {productData &&
-        productData.products &&
-        productData.products.map((product) => (
+      {productData
+        && productData.products
+        && productData.products.map(product => (
           <div
             key={product.id}
             className="sm:p-1 md:w-1/2 md:self-center flex flex-col"
@@ -63,8 +63,11 @@ function Product({ productData, fetchProduct }) {
             <h2 className="p-3 text-2xl">
               <span className="text-3xl">Food Pairings: </span>
 
-              {product.food_pairing.map((food) => (
-                <p key={uid(food)}> {food}</p>
+              {product.food_pairing.map(food => (
+                <p key={uid(food)}>
+                  {' '}
+                  {food}
+                </p>
               ))}
             </h2>
           </div>
@@ -73,12 +76,12 @@ function Product({ productData, fetchProduct }) {
   );
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   productData: state.product,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchProduct: (params) => dispatch(fetchProduct(params)),
+const mapDispatchToProps = dispatch => ({
+  fetchProduct: params => dispatch(fetchProduct(params)),
 });
 
 Product.propTypes = {

@@ -19,9 +19,9 @@ function Home({ productData, fetchProducts }) {
   return (
     <div>
       <div className="bg-gray-100 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 justify-items-center">
-        {productData &&
-          productData.products &&
-          productData.products.map((product) => (
+        {productData
+          && productData.products
+          && productData.products.map(product => (
             <div
               key={product.id}
               className="sm:p-1 md:w-1/2 self-center flex flex-col mb-3"
@@ -43,11 +43,11 @@ function Home({ productData, fetchProducts }) {
   );
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   productData: state.product,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   fetchProducts: () => dispatch(fetchProducts()),
 });
 

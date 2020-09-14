@@ -15,12 +15,12 @@ export const fetchProductsRequest = () => ({
   type: FETCH_PRODUCTS_REQUEST,
 });
 
-export const fetchProductsSuccess = (products) => ({
+export const fetchProductsSuccess = products => ({
   type: FETCH_PRODUCTS_SUCCESS,
   payload: products,
 });
 
-export const fetchProductsFailure = (error) => ({
+export const fetchProductsFailure = error => ({
   type: FETCH_PRODUCTS_FAILURE,
   payload: error,
 });
@@ -28,37 +28,37 @@ export const fetchProductsFailure = (error) => ({
 /* eslint-disable implicit-arrow-linebreak */
 export const fetchProducts = () =>
   // receive dispatch as an argument
-  (dispatch) => {
+  dispatch => {
     dispatch(fetchProductsRequest());
     axios
       .get(`${api}?${limits}`)
-      .then((response) => {
+      .then(response => {
         // response.data is the JOBS
         const products = response.data;
         dispatch(fetchProductsSuccess(products));
       })
-      .catch((error) => {
+      .catch(error => {
         // error.message is the error message
         dispatch(fetchProductsFailure(error.message));
       });
   };
-export const fetchProduct = (id) =>
+export const fetchProduct = id =>
   // receive dispatch as an argument
-  (dispatch) => {
+  dispatch => {
     dispatch(fetchProductsRequest());
     axios
       .get(`${api}/${id}`)
-      .then((response) => {
+      .then(response => {
         // response.data is the JOBS
         const products = response.data;
         dispatch(fetchProductsSuccess(products));
       })
-      .catch((error) => {
+      .catch(error => {
         // error.message is the error message
         dispatch(fetchProductsFailure(error.message));
       });
   };
-export const fetchPairings = (query) => {
+export const fetchPairings = query => {
   // receive dispatch as an argument
   let findPair = '';
   if (query === '') {
@@ -66,16 +66,16 @@ export const fetchPairings = (query) => {
   } else {
     findPair = `${api}?food=${query}`;
   }
-  return (dispatch) => {
+  return dispatch => {
     dispatch(fetchProductsRequest());
     axios
       .get(findPair)
-      .then((response) => {
+      .then(response => {
         // response.data is the JOBS
         const products = response.data;
         dispatch(fetchProductsSuccess(products));
       })
-      .catch((error) => {
+      .catch(error => {
         // error.message is the error message
         dispatch(fetchProductsFailure(error.message));
       });
