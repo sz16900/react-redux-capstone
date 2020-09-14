@@ -14,13 +14,13 @@ function Filter({ fetchPairings }) {
             id="username"
             type="text"
             placeholder="Your Favorite Food"
-            onKeyPress={(e) => {
+            onKeyPress={e => {
               if (e.key === 'Enter') {
                 e.preventDefault();
                 fetchPairings(e.target.value);
               }
             }}
-            onChange={(e) => {
+            onChange={e => {
               fetchPairings(e.target.value);
             }}
           />
@@ -30,12 +30,12 @@ function Filter({ fetchPairings }) {
   );
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   productData: state.product,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchPairings: (params) => dispatch(fetchPairings(params)),
+const mapDispatchToProps = dispatch => ({
+  fetchPairings: params => dispatch(fetchPairings(params)),
 });
 
 Filter.propTypes = {
