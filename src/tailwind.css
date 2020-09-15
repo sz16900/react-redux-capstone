@@ -1,3 +1,5 @@
+/* stylelint-disable */
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
@@ -18799,6 +18801,8 @@ video {
 .animate-bounce {
   animation: bounce 1s infinite;
 }
+
+/* stylelint-enable */
 
 .loader {
   border: 5px solid #f3f3f3;

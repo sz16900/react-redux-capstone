@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchProduct } from '../redux';
-import Loader from '../components/Loader';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { uid } from 'react-uid';
+import { fetchProduct } from '../redux';
+import Loader from '../components/Loader';
 
 function Product({ productData, fetchProduct }) {
   const { id } = useParams();
@@ -11,17 +12,26 @@ function Product({ productData, fetchProduct }) {
     fetchProduct(id);
     // empty array do it is dispatched only once
   }, []);
-  return productData.loading ? (
-    <Loader></Loader>
-  ) : productData.error ? (
-    <h2>{productData.error}</h2>
-  ) : (
+  if (productData.loading) {
+    return <Loader />;
+  }
+  if (productData.error) {
+    return <h2>{productData.error}</h2>;
+  }
+  return (
     <div className="flex flex-col ">
-      {productData &&
-        productData.products &&
-        productData.products.map((product) => (
-          <div className="sm:p-1 md:w-1/2 md:self-center flex flex-col">
-            <img src={product.image_url} className="w-32 self-center"></img>
+      {productData
+        && productData.products
+        && productData.products.map(product => (
+          <div
+            key={product.id}
+            className="sm:p-1 md:w-1/2 md:self-center flex flex-col"
+          >
+            <img
+              alt="bottle or can or kef of beer"
+              src={product.image_url}
+              className="w-32 self-center"
+            />
             <h2 className="p-3 border-black border-b-2 text-2xl">
               <span className="text-3xl">Name: </span>
               {product.name}
@@ -52,9 +62,13 @@ function Product({ productData, fetchProduct }) {
             </h2>
             <h2 className="p-3 text-2xl">
               <span className="text-3xl">Food Pairings: </span>
-              {product.food_pairing.map((food) => {
-                return <p> {food}</p>;
-              })}
+
+              {product.food_pairing.map(food => (
+                <p key={uid(food)}>
+                  {' '}
+                  {food}
+                </p>
+              ))}
             </h2>
           </div>
         ))}
@@ -62,26 +76,24 @@ function Product({ productData, fetchProduct }) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    productData: state.product,
-  };
-};
+const mapStateToProps = state => ({
+  productData: state.product,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchProduct: (params) => dispatch(fetchProduct(params)),
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  fetchProduct: params => dispatch(fetchProduct(params)),
+});
 
 Product.propTypes = {
-  fetchData: PropTypes.func,
+  /* eslint-disable react/forbid-prop-types */
   productData: PropTypes.object,
+  /* eslint-enable react/forbid-prop-types */
+  fetchProduct: PropTypes.func,
 };
 
 Product.defaultProps = {
-  fetchData: () => {},
   productData: {},
+  fetchProduct: () => {},
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Product);
