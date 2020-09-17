@@ -1,4 +1,4 @@
-# [React Project: Bookstore App]
+# [React-Redux Captsone Project: Bookstore App]
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
