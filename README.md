@@ -30,6 +30,7 @@ In this project, I am going to make a React-Redux simple e-commerce front-end ap
 - Tailwind CSS
 - Spring
 - Jest
+- Punk API
 
 ---
 
